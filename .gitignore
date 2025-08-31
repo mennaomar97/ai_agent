@@ -1,0 +1,46 @@
+# --- Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.crt
+
+# --- Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+*.log
+
+# Virtual environments
+.venv/
+venv/
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build / dist
+build/
+dist/
+*.spec
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Project-specific (root-level only)
+# These leading slashes mean: only at the repo root
+/assignment.txt
+/grading_results.txt
+/requirements.txt
+/solution.ipynb
+/00_New/

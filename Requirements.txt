@@ -1,5 +1,11 @@
 streamlit
+<<<<<<< HEAD:requirements.txt
 google.generativeai
 io
 datetime
+=======
+google-generativeai
+>>>>>>> a9f6eba (update requirements.txt and notebooks):Requirements.txt
 pandas
+openai>=1.0.0
+python-dotenv
