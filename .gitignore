@@ -48,3 +48,4 @@ Thumbs.db
 /requirements.txt
 /solution.ipynb
 /00_New//ai_agent_streamlit.ipynb
+/.devcontainer
