@@ -47,5 +47,6 @@ Thumbs.db
 /grading_results.txt
 /requirements.txt
 /solution.ipynb
-/00_New//ai_agent_streamlit.ipynb
+/00_New/
 /.devcontainer
+/ai_agent_streamlit.ipynb

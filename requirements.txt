@@ -1,3 +1,4 @@
 streamlit
 google-generativeai
 pandas
+openai>=1.0.0
