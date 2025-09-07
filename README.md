@@ -1,10 +1,13 @@
-# AI Assignment Grader (OpenAI + Gemini)
+# AI Assignment Grader (OpenAI + Gemini) — CLI & Streamlit Web App
 
-A command‑line tool that grades student programming assignments using either **OpenAI** or **Google Gemini**.  
-It reads the assignment requirements and a student solution (**.ipynb** or **.py**), sends them to the selected provider, and saves a structured textual evaluation.
+Grade student programming assignments using either **OpenAI** or **Google Gemini**.  
+This repo contains **two ways** to run the grader:
 
-> ✅ Secrets-safe: uses environment variables / `.env` locally (never commit real keys).  
-> ✅ Provider switch: `--provider openai` or `--provider gemini`.  
+1. **Command-line tool** (reads assignment + .ipynb/.py and prints a rubric-based evaluation)
+2. **Streamlit web app** (browser UI; can use **server-side secrets** so users don’t need their own key)
+
+> ✅ Secrets-safe: local `.env` for CLI, **Streamlit Secrets** for the web app (never commit real keys).  
+> ✅ Provider switch: **OpenAI** or **Gemini**.  
 > ✅ Works with **Jupyter notebooks** (extracts code cells) or plain **Python files**.
 
 ---
@@ -22,24 +25,18 @@ It reads the assignment requirements and a student solution (**.ipynb** or **.py
 ## Folder Structure (example)
 
 ```
-your-repo/
-├─ ai_agent_test.py                 # main script (supports OpenAI + Gemini)
-├─ .env.example              # template for local secrets (NO real keys)
-├─ .gitignore                # ignore rules (includes .env)
+├─ ai_agent_test.py # CLI script (supports OpenAI + Gemini)
+├─ streamlit_app.py # Streamlit app entry (rename if your app file differs)
+├─ app/ # (optional) shared modules
+├─ .env.example # template for local secrets (NO real keys)
+├─ .gitignore # ignore rules (includes .env)
 └─ requirements.txt
-```
-
-## Setup
-
-### 1) Python deps
-
-```bash
-pip install -r requirements.txt
 ```
 
 **requirements.txt** should include at least:
 
 ```
+streamlit
 google-generativeai
 openai>=1.0.0
 python-dotenv
@@ -47,7 +44,14 @@ python-dotenv
 
 ### 2) Configure API keys (choose what you use)
 
-Create a local **`.env`** (do **not** commit it). A sample `.env.example` is provided.
+**CLI (local dev)**: create a local .env (do not commit it). A sample .env.example is provided.
+
+## .env (local only; never commit)
+
+OPENAI_API_KEY=sk-... # for OpenAI provider
+GEMINI_API_KEY=AIza... # for Gemini provider
+
+**Streamlit Cloud (web app)**: set secrets in the app’s Settings
 
 ```
 # .env (local only; never commit)
@@ -102,8 +106,4 @@ The grader builds a single prompt that contains:
 - The **assignment requirements** (full text of `assignment.txt`).
 - The **student code** (extracted from `solution.ipynb` or from `solution.py`).
 
-The model responds with a rubric‑based evaluation, including total score, letter grade, and section scores for **Correctness**, **Code Quality**, **Completeness**, and **Efficiency**, plus free‑text feedback and suggestions.
-
-> If you want **strict JSON** output instead of free text, we can modify the prompt and add lightweight parsing—ask and we’ll include it.
-
----
+## The model responds with a rubric‑based evaluation, including total score, letter grade, and section scores for **Correctness**, **Code Quality**, **Completeness**, and **Efficiency**, plus free‑text feedback and suggestions.
